@@ -6,7 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const DOCUMENT_ROOT = './public/';
+const DOCUMENT_ROOT = '../docs/js/';
 const RESOURCES_ROOT = './src/';
 
 module.exports = function() {
@@ -74,6 +74,10 @@ module.exports = function() {
               loader: 'ts-loader',
             },
           ],
+        },
+        {
+          test: /\.vue$/,
+          use: 'vue-loader',
         },
         {
           test: /\.s[ac]ss$/i,
