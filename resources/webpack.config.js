@@ -5,6 +5,7 @@ console.log(process.env.NODE_ENV);
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 const DOCUMENT_ROOT = '../docs/js/';
 const RESOURCES_ROOT = './src/';
@@ -27,7 +28,7 @@ module.exports = function() {
 
   let optimization = {
     splitChunks: {
-      name: 'js/vendor',
+      name: 'vendor',
       //chunks: 'initial'
       chunks: 'all',
     },
@@ -55,7 +56,7 @@ module.exports = function() {
     },
 
     // 拡張子の省略（Duno次第でだめかも）
-    extensions: ['tsx', '.ts', '.js', '.jsx'],
+    extensions: ['vue', 'tsx', '.ts', '.js', '.jsx'],
 
     // モジュール検索
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
@@ -67,15 +68,6 @@ module.exports = function() {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'ts-loader',
-            },
-          ],
-        },
-        {
           test: /\.vue$/,
           use: 'vue-loader',
         },
@@ -83,10 +75,22 @@ module.exports = function() {
           test: /\.s[ac]ss$/i,
           use: ['style-loader', 'css-loader', 'sass-loader'],
         },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                appendTsSuffixTo: [/\.vue$/],
+              },
+            },
+          ],
+        },
       ],
     },
 
-    plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.optimize.AggressiveMergingPlugin()],
+    plugins: [new VueLoaderPlugin(), new webpack.NoEmitOnErrorsPlugin(), new webpack.optimize.AggressiveMergingPlugin()],
   };
 
   return [
