@@ -17,7 +17,9 @@
   },
   "author": "sv.junic",
   "license": "Unlicense",
-  "dependencies": {},
+  "dependencies": {
+    "vuex": "^4.0.0-beta.4"
+  },
   "devDependencies": {
     "@types/eslint": "^7.2.3",
     "@types/node-sass": "^4.11.1",
@@ -36,7 +38,6 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^3.0.0",
     "vue-loader": "^16.0.0-beta.3",
-    "vuex": "^3.5.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   }
