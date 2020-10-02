@@ -11,7 +11,11 @@
 // }}}
 
 ////どっちでもいいぽい
-import { createApp } from 'vue';
+import Vue, { createApp } from 'vue';
+import vuex from 'vuex';
 import App from '~/App.vue';
+
 const app = createApp(App);
 app.mount('#app');
+
+//app.use();
