@@ -10,22 +10,34 @@ export default createStore({
     },
   },
   actions: {
-    increment({ commit }, payload) {
-      commit('increment', payload);
+    //increment({ commit }, payload) {
+    //  commit('increment', payload);
+    //},
+    //decrement({ commit }, payload) {
+    //  commit('decrement', payload);
+    //},
+    increment({ commit }) {
+      commit('increment');
     },
-    decrement({ commit }, payload) {
-      commit('decrement', payload);
+    decrement({ commit }) {
+      commit('decrement');
     },
   },
   mutations: {
-    increment(state, payload) {
-      if (typeof payload !== 'number') return;
-      console.log(state.count);
-      state.count += payload;
+    //increment(state, payload) {
+    //  if (typeof payload !== 'number') return;
+    //  console.log(state.count);
+    //  state.count += payload;
+    //},
+    //decrement(state, payload) {
+    //  if (typeof payload !== 'number') return;
+    //  state.count -= payload;
+    //},
+    increment(state) {
+      state.count += 1;
     },
-    decrement(state, payload) {
-      if (typeof payload !== 'number') return;
-      state.count -= payload;
+    decrement(state) {
+      state.count -= 1;
     },
   },
 });

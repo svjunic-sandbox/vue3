@@ -17,12 +17,20 @@ export default {
 
     const count = computed(() => store.state.count);
 
+    //const increment = () => {
+    //  store.dispatch('increment', 1);
+    //};
+
+    //const decrement = () => {
+    //  store.dispatch('decrement', 1);
+    //};
+
     const increment = () => {
-      store.dispatch('increment', 1);
+      store.dispatch('increment');
     };
 
     const decrement = () => {
-      store.dispatch('decrement', 1);
+      store.dispatch('decrement');
     };
 
     return {
