@@ -10,7 +10,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const DOCUMENT_ROOT = '../docs/js/';
 const RESOURCES_ROOT = './src/';
 
-module.exports = function() {
+module.exports = function () {
   const entries = {
     index: path.join(__dirname, `${RESOURCES_ROOT}index.ts`),
   };
@@ -23,7 +23,7 @@ module.exports = function() {
     path: path.join(__dirname, DOCUMENT_ROOT),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    jsonpFunction: 'sandbox',
+    uniqueName: 'sandbox',
   };
 
   let optimization = {
@@ -63,7 +63,7 @@ module.exports = function() {
   };
 
   const baseConfig = {
-    target: 'web',
+    target: ['web', 'es5'],
 
     module: {
       rules: [
