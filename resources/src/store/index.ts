@@ -1,21 +1,23 @@
-import { createStore } from 'vuex';
+import { InjectionKey } from 'vue';
+import { createStore, useStore as baseUseStore, Store } from 'vuex';
 
-export default createStore({
+export interface State {
+  count: number;
+}
+
+// define injection key
+export const key: InjectionKey<Store<State>> = Symbol();
+
+export default createStore<State>({
   state: {
     count: 0,
   },
   getters: {
-    hoge(state) {
+    hoge(state): number {
       return state.count;
     },
   },
   actions: {
-    //increment({ commit }, payload) {
-    //  commit('increment', payload);
-    //},
-    //decrement({ commit }, payload) {
-    //  commit('decrement', payload);
-    //},
     increment({ commit }) {
       commit('increment');
     },
@@ -24,15 +26,6 @@ export default createStore({
     },
   },
   mutations: {
-    //increment(state, payload) {
-    //  if (typeof payload !== 'number') return;
-    //  console.log(state.count);
-    //  state.count += payload;
-    //},
-    //decrement(state, payload) {
-    //  if (typeof payload !== 'number') return;
-    //  state.count -= payload;
-    //},
     increment(state) {
       state.count += 1;
     },
@@ -41,3 +34,8 @@ export default createStore({
     },
   },
 });
+
+// define your own `useStore` composition function
+export function useStore() {
+  return baseUseStore(key);
+}

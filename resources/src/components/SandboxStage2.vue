@@ -9,21 +9,14 @@
 
 <script lang="ts">
 import { reactive, computed } from 'vue';
-import { useStore } from 'vuex';
+//import { useStore } from 'vuex';
+import { useStore } from '~/store/index';
 
 export default {
   setup() {
     const store = useStore();
 
     const count = computed(() => store.state.count);
-
-    //const increment = () => {
-    //  store.dispatch('increment', 1);
-    //};
-
-    //const decrement = () => {
-    //  store.dispatch('decrement', 1);
-    //};
 
     const increment = () => {
       store.dispatch('increment');
